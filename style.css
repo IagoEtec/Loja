@@ -7,8 +7,8 @@
 
 /* ======= BODY ======= */
 body {
-    background-color: #0d1117; /* Preto elegante */
-    color: #e6edf3; /* Texto claro */
+    background-color: #0b0b0b; /* Preto profundo */
+    color: #f5f5f5; /* Texto claro */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
@@ -21,30 +21,32 @@ body {
 /* ======= CABEÇALHO ======= */
 h1 {
     text-align: center;
-    color: #58a6ff; /* Azul claro vibrante */
-    font-size: 2.5rem;
+    color: #d4af37; /* Dourado luxuoso */
+    font-size: 2.8rem;
+    font-weight: 700;
     margin-bottom: 10px;
+    letter-spacing: 2px;
 }
 
 h2 {
     text-align: center;
-    color: #8b949e; /* Cinza elegante */
-    font-size: 1.2rem;
+    color: #b3a369; /* Dourado suave */
+    font-size: 1.3rem;
     margin-bottom: 30px;
 }
 
 /* ======= CONTAINER PRINCIPAL ======= */
 .container {
-    background-color: #161b22; /* Preto suave */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-    max-width: 800px;
+    background: linear-gradient(145deg, #0f0f0f, #1a1a1a); /* Preto texturizado */
+    padding: 35px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+    max-width: 850px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 /* ======= BOTÕES ======= */
@@ -56,59 +58,67 @@ h2 {
 }
 
 .btn {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 14px 30px;
     text-transform: uppercase;
     transition: all 0.3s ease-in-out;
     text-align: center;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border: none;
+    /* Design quadrado */
+    border-radius: 0;
 }
 
-/* Azul forte */
+/* Botão sólido dourado */
 .btn-danger {
-    background-color: #1f6feb;
-    color: #fff;
-    border: none;
+    background: #d4af37;
+    color: #0b0b0b;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
 }
 
 .btn-danger:hover {
-    background-color: #1158c7;
+    background: #b9962b;
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6);
 }
 
-/* Contorno azul */
+/* Botão com contorno dourado */
 .btn-warning {
-    background-color: transparent;
-    color: #58a6ff;
-    border: 2px solid #58a6ff;
+    background: transparent;
+    color: #d4af37;
+    border: 2px solid #d4af37;
 }
 
 .btn-warning:hover {
-    background-color: #1f6feb;
-    color: #fff;
+    background: #d4af37;
+    color: #0b0b0b;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
 }
 
 /* ======= TABELA ======= */
 .table {
     width: 100%;
-    color: #e6edf3;
+    color: #f5f5f5;
     border-collapse: collapse;
     text-align: center;
     border-radius: 8px;
     overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .table th {
-    background-color: #1f6feb;
-    color: #fff;
-    padding: 12px;
-    font-size: 1rem;
+    background-color: #d4af37;
+    color: #0b0b0b;
+    padding: 14px;
+    font-size: 1.05rem;
+    text-transform: uppercase;
 }
 
 .table td {
-    padding: 12px;
-    background-color: #0d1117;
-    border-bottom: 1px solid #30363d;
+    padding: 14px;
+    background-color: #141414;
+    border-bottom: 1px solid #2c2c2c;
 }
 
 /* ======= FORMULÁRIO ======= */
@@ -116,44 +126,69 @@ form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
 }
 
 .form-control {
-    background-color: #0d1117;
-    color: #fff;
-    border: 2px solid #30363d;
-    border-radius: 6px;
-    padding: 12px;
+    background-color: #0b0b0b;
+    color: #d1d1d1; /* Texto dentro do input em cinza claro */
+    border: 2px solid #2c2c2c;
+    border-radius: 8px;
+    padding: 14px;
     font-size: 1rem;
     transition: all 0.3s ease-in-out;
 }
 
+.form-control::placeholder {
+    color: #a6a6a6; /* Placeholder mais claro */
+}
+
 .form-control:focus {
-    background-color: #161b22;
-    color: #fff;
-    border-color: #1f6feb;
-    box-shadow: 0 0 10px #1f6feb;
+    background-color: #141414;
+    border-color: #d4af37;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
     outline: none;
 }
 
 /* Botão do formulário */
 button[type="submit"] {
-    background-color: #1f6feb;
-    color: #fff;
-    font-size: 1rem;
-    padding: 12px;
-    border-radius: 8px;
+    background-color: #d4af37;
+    color: #0b0b0b;
+    font-size: 1.1rem;
+    padding: 14px;
+    border-radius: 0; /* Design quadrado */
     border: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    font-weight: 600;
 }
 
 button[type="submit"]:hover {
-    background-color: #1158c7;
+    background-color: #b9962b;
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6);
 }
 
 /* ======= LINKS ======= */
 a {
     text-decoration: none;
+    color: #d4af37;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #b9962b;
+}
+
+/* Cor cinza clara para os textos das colunas ID, NOME, PREÇO e QUANTIDADE */
+.table tbody td {
+    color: #d1d1d1;
+}
+
+/* Mantém o cabeçalho dourado */
+.table th {
+    background-color: #d4af37;
+    color: #0b0b0b;
+    padding: 14px;
+    font-size: 1.05rem;
+    text-transform: uppercase;
 }

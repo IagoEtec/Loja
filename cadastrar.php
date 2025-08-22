@@ -2,26 +2,18 @@
     include "cabecalho.php"
 ?>
     <div class="container">
-    <form>
+    <form action="inserir.php" method="POST">
         <div class="mb-3">
             <input type="text" name="produto" class="form-control" placeholder="Digite o nome do produto">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Digite o preço do Produto">
+            <input type="text" name="preco" class="form-control" placeholder="Digite o preço do Produto">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Digite a quantidade">
+            <input type="text" name="estoque" class="form-control" placeholder="Digite a quantidade">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    </div>
-
-    <div class="container">
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a href="cadastrar.php" type="button" class="btn btn-danger">Cadastrar</a>
-            <a href="listar.php" type="button" class="btn btn-warning">Listrar</a>
-        </div>
-
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
