@@ -1,6 +1,9 @@
 <?php
     include "cabecalho.php"
 ?>
+
+    <a href="index.php" class="back-button">← Voltar</a>
+
     <div class="container">
             <table class="table">
             <thead>
@@ -31,7 +34,7 @@
                     echo "
                     <td>
                         <div class='btn-group' role='group'>
-                            <a href='#' type='button' class='btn btn-success'>Atualizar</a>
+                            <a href='form_atualizado.php?id=" . $produto['id'] . "' type='button' class='btn btn-success'>Atualizar</a>
                             <a href='#' type='button' class='btn btn-danger'>Apagar</a>
                         </div>
                     </td>";
@@ -39,8 +42,16 @@
                 }
             ?>
 
+    
+
             </tbody>
         </table>
     </div>
 </body>
 </html>
+
+<!-- 
+codigos BD
+SELECT * FROM produtos WHERE id = 1;
+UPDATE produtos SET nome = "NOVO NOME" WHERE id = 1; 
+-->

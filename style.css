@@ -192,3 +192,32 @@ a:hover {
     font-size: 1.05rem;
     text-transform: uppercase;
 }
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #d4af37;
+    color: #0b0b0b;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #8b7323;
+    transform: translateY(-2px);
+}
+
+/* Para dispositivos móveis */
+@media (max-width: 768px) {
+    .back-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}

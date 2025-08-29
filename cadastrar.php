@@ -1,6 +1,9 @@
 <?php
     include "cabecalho.php"
 ?>
+    <a href="index.php" class="back-button">← Voltar</a>
+
+
     <div class="container">
     <form action="inserir.php" method="POST">
         <div class="mb-3">
