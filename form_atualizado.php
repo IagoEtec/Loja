@@ -1,42 +1,46 @@
 <?php
-    include "cabecalho.php";
-    $id = $_GET['id'];
+include "cabecalho.php";
+require 'conexao.php';
+
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+if (!$id) {
+    echo '<div class="container"><div class="alert alert-danger">ID inválido.</div></div>';
+    echo '</body></html>';
+    exit;
+}
+
+$sql = "SELECT * FROM produtos WHERE id = :id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':id' => $id]);
+$produto = $stmt->fetch();
+
+if (!$produto) {
+    echo '<div class="container"><div class="alert alert-danger">Produto não encontrado.</div></div>';
+    echo '</body></html>';
+    exit;
+}
 ?>
-    <a href="index.php" class="back-button">← Voltar</a>
 
+<div class="container">
+    <a href="index.php" class="btn btn-link mb-3">← Voltar</a>
 
-    <div class="container">
-        <h2>Atualização de produto</h2>
+    <h2>Atualização de produto</h2>
 
-    <?php
-        require 'conexao.php';
-        $sql = "SELECT * FROM produtos WHERE id = $id";
-        $stmt = $pdo->query($sql);
-        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // var_dump($produto);
-        // while ($produto = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        //     echo "ID: " . $produto['id'] . "<br>";
-        //     echo "Nome: " . $produto['nome'] . "<br>";
-        //     echo "Preço: R$" . $produto['preco'] . "<br>";
-        //     echo "Estoque: " . $produto['estoque'] . "<br><br>";
-        //     }
-    ?>
-
-    <form action="#" method="POST">
+    <form action="atualizar.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($produto['id']); ?>">
         <div class="mb-3">
-            Nome: <input value="<?php echo $produto['nome']; ?>" type="text" name="produto" class="form-control">
+            Nome: <input required value="<?php echo htmlspecialchars($produto['nome']); ?>" type="text" name="produto" class="form-control">
         </div>
         <div class="mb-3">
-            Preço: <input value="<?php echo $produto['preco']; ?>" type="text" name="preco" class="form-control">
+            Preço: <input required value="<?php echo number_format($produto['preco'], 2, ',', '.'); ?>" type="text" name="preco" class="form-control" placeholder="Ex: 10,50 ou 10.50">
         </div>
         <div class="mb-3">
-            Quantidade: <input value="<?php echo $produto['quantidade']; ?>" type="text" name="estoque" class="form-control">
+            Quantidade: <input required value="<?php echo htmlspecialchars($produto['quantidade']); ?>" type="number" name="estoque" class="form-control" min="0" step="1">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

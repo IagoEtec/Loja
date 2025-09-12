@@ -8,5 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bem vindo ao 1° Sistema CRUD</h1>
-    <h2>Iago de Almeida Coelho</h2>
+<header class="bg-light py-3 mb-4">
+    <div class="container">
+        <h1 class="h4 mb-0">Bem vindo ao 1° Sistema CRUD</h1>
+        <h2 class="h6 mb-0">Iago de Almeida Coelho</h2>
+    </div>
+</header>

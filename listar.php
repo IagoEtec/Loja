@@ -1,51 +1,54 @@
 <?php
-    include "cabecalho.php";
-    require 'conexao.php'; // Move o require para antes de usar $pdo
+include "cabecalho.php";
+require 'conexao.php';
 ?>
 
-    <a href="index.php" class="back-button">← Voltar</a>
+<div class="container">
+    <a href="index.php" class="btn btn-link mb-3">← Voltar</a>
 
-    <div class="container">
-            <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">NOME</th>
-                    <th scope="col">PREÇO</th>
-                    <th scope="col">QUANTIDADE</th>
-                    <th scope="col">OPÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
+    <?php if (isset($_GET['created'])): ?>
+        <div class="alert alert-success">Produto cadastrado com sucesso.</div>
+    <?php endif; ?>
+    <?php if (isset($_GET['updated'])): ?>
+        <div class="alert alert-success">Produto atualizado com sucesso.</div>
+    <?php endif; ?>
+    <?php if (isset($_GET['deleted'])): ?>
+        <div class="alert alert-success">Produto apagado com sucesso.</div>
+    <?php endif; ?>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NOME</th>
+                <th scope="col">PREÇO</th>
+                <th scope="col">QUANTIDADE</th>
+                <th scope="col">OPÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
             <?php
-                // Verifica se a conexão foi estabelecida
-                if ($pdo !== null) {
-                    $sql = "SELECT * FROM produtos";
-                    $stmt = $pdo->query($sql);
-                    while ($produto = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
-                        echo "<tr>";
-                        echo "<td>" . $produto['id'] . "</td>";
-                        echo "<td>" . $produto['nome'] . "</td>";
-                        echo "<td>" . $produto['preco'] . "</td>";
-                        echo "<td>" . $produto['quantidade'] . "</td>";
-                        echo "
-                        <td>
-                            <div class='btn-group' role='group'>
-                                <a href='form_atualizado.php?id=" . $produto['id'] . "' type='button' class='btn btn-success'>Atualizar</a>
-                                <a href='#' type='button' class='btn btn-danger'>Apagar</a>
-                            </div>
-                        </td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>Erro: Não foi possível conectar ao banco de dados</td></tr>";
-                }
+            $sql = "SELECT * FROM produtos ORDER BY id ASC";
+            $stmt = $pdo->query($sql);
+            while ($produto = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($produto['id']) . "</td>";
+                echo "<td>" . htmlspecialchars($produto['nome']) . "</td>";
+                echo "<td>R$ " . number_format($produto['preco'], 2, ',', '.') . "</td>";
+                echo "<td>" . htmlspecialchars($produto['quantidade']) . "</td>";
+                echo "<td>
+                        <div class='btn-group' role='group'>
+                            <a href='form_atualizado.php?id=" . urlencode($produto['id']) . "' class='btn btn-success'>Atualizar</a>
+                            <a href='apagar.php?id=" . urlencode($produto['id']) . "' class='btn btn-danger' onclick=\"return confirm('Deseja realmente apagar este produto?');\">Apagar</a>
+                        </div>
+                      </td>";
+                echo "</tr>";
+            }
             ?>
+        </tbody>
+    </table>
+</div>
 
-            </tbody>
-        </table>
-    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>
