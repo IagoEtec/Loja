@@ -1,20 +1,12 @@
 <?php
-$host = '127.0.0.1';
-$dbname = 'loja';
-$user = 'root';
-$pass = '';
-
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
-
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
+$host = "localhost";
+$dbname = "loja";
+$user = "root";
+$pass = "";
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    // Em produção você não deve mostrar a mensagem completa
-    die("Erro na conexão com o banco de dados: " . $e->getMessage());
+    die("Erro ao conectar ao banco: " . $e->getMessage());
 }

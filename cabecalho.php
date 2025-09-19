@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <title>Loja - CRUD</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="bg-light py-3 mb-4">
-    <div class="container">
-        <h1 class="h4 mb-0">Bem vindo ao 1° Sistema CRUD</h1>
-        <h2 class="h6 mb-0">Iago de Almeida Coelho</h2>
-    </div>
-</header>
+    <h1>Loja Virtual</h1>
+    <h2>Gerenciamento de Produtos</h2>

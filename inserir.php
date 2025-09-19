@@ -1,33 +1,18 @@
 <?php
-require 'conexao.php';
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php');
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: index.php");
     exit;
 }
+require 'conexao.php';
 
-$nome = trim($_POST['produto'] ?? '');
-$preco_raw = trim($_POST['preco'] ?? '');
-$estoque = filter_var($_POST['estoque'] ?? 0, FILTER_VALIDATE_INT);
-
-if ($nome === '' || $preco_raw === '' || $estoque === false) {
-    die('Dados inválidos. Volte e preencha todos os campos corretamente.');
-}
-
-// aceita vírgula ou ponto, converte para float
-$preco = str_replace(',', '.', $preco_raw);
-$preco = (float) $preco;
+$nome = $_POST['nome'];
+$preco = $_POST['preco'];
+$quantidade = $_POST['quantidade'];
 
 $sql = "INSERT INTO produtos (nome, preco, quantidade) VALUES (:nome, :preco, :quantidade)";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':nome', $nome);
-$stmt->bindParam(':preco', $preco);
-$stmt->bindParam(':quantidade', $estoque, PDO::PARAM_INT);
+$stmt->execute([':nome' => $nome, ':preco' => $preco, ':quantidade' => $quantidade]);
 
-try {
-    $stmt->execute();
-    header('Location: listar.php?created=1');
-    exit;
-} catch (PDOException $e) {
-    die("Erro ao inserir produto: " . $e->getMessage());
-}
+header("Location: listar.php");
+exit;

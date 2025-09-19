@@ -1,35 +1,24 @@
 <?php
-require 'conexao.php';
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php');
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: index.php");
     exit;
 }
+require 'conexao.php';
 
-$id = filter_var($_POST['id'] ?? 0, FILTER_VALIDATE_INT);
-$nome = trim($_POST['produto'] ?? '');
-$preco_raw = trim($_POST['preco'] ?? '');
-$estoque = filter_var($_POST['estoque'] ?? 0, FILTER_VALIDATE_INT);
-
-if (!$id || $nome === '' || $preco_raw === '' || $estoque === false) {
-    die('Dados inválidos.');
-}
-
-$preco = str_replace(',', '.', $preco_raw);
-$preco = (float) $preco;
+$id = $_POST['id'];
+$nome = $_POST['nome'];
+$preco = $_POST['preco'];
+$quantidade = $_POST['quantidade'];
 
 $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade WHERE id = :id";
 $stmt = $pdo->prepare($sql);
+$stmt->execute([
+    ':nome' => $nome,
+    ':preco' => $preco,
+    ':quantidade' => $quantidade,
+    ':id' => $id
+]);
 
-try {
-    $stmt->execute([
-        ':nome' => $nome,
-        ':preco' => $preco,
-        ':quantidade' => $estoque,
-        ':id' => $id
-    ]);
-    header('Location: listar.php?updated=1');
-    exit;
-} catch (PDOException $e) {
-    die("Erro ao atualizar produto: " . $e->getMessage());
-}
+header("Location: listar.php");
+exit;
